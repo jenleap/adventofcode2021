@@ -29,3 +29,19 @@ exports.strFileHelper = (inputFile) => {
         })
     })        
 }
+
+exports.rawFileHelper = (inputFile) => {
+    return new Promise((resolve, reject) => {
+        fs.readFile(inputFile, 'utf8' , (err, data) => {
+            if (err) {
+              console.error(err)
+              return;
+            }
+
+            const splitData = data.split(',');
+            const parsedData = splitData.map(num => parseInt(num));
+
+            resolve(parsedData);
+        })
+    })        
+}
